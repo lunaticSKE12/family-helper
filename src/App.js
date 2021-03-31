@@ -11,13 +11,9 @@ function App() {
   const [list, setList] = useState([]);
 
   async function fetchList() {
-    try {
-      const { data } = await API.graphql(graphqlOperation(listLists));
-      setList(data.listLists.items);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+    const { data } = await API.graphql(graphqlOperation(listLists));
+    setList(data.listLists.items);
+    console.log(data);
   }
 
   useEffect(() => {

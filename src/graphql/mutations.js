@@ -16,18 +16,11 @@ export const createList = /* GraphQL */ `
           title
           quantity
           done
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -48,18 +41,11 @@ export const updateList = /* GraphQL */ `
           title
           quantity
           done
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -80,18 +66,11 @@ export const deleteList = /* GraphQL */ `
           title
           quantity
           done
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -113,11 +92,7 @@ export const createListItem = /* GraphQL */ `
         description
         listItems {
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -125,18 +100,11 @@ export const createListItem = /* GraphQL */ `
         items {
           id
           action
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -158,11 +126,7 @@ export const updateListItem = /* GraphQL */ `
         description
         listItems {
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -170,18 +134,11 @@ export const updateListItem = /* GraphQL */ `
         items {
           id
           action
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -203,11 +160,7 @@ export const deleteListItem = /* GraphQL */ `
         description
         listItems {
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -215,18 +168,11 @@ export const deleteListItem = /* GraphQL */ `
         items {
           id
           action
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -249,25 +195,15 @@ export const createAction = /* GraphQL */ `
           id
           title
           description
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         actions {
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -290,25 +226,15 @@ export const updateAction = /* GraphQL */ `
           id
           title
           description
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         actions {
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -331,25 +257,15 @@ export const deleteAction = /* GraphQL */ `
           id
           title
           description
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         actions {
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
