@@ -7,17 +7,24 @@ export const onCreateList = /* GraphQL */ `
       id
       title
       description
-      Items {
+      listItems {
         items {
           id
           title
           quantity
           done
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -29,17 +36,24 @@ export const onUpdateList = /* GraphQL */ `
       id
       title
       description
-      Items {
+      listItems {
         items {
           id
           title
           quantity
           done
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -51,17 +65,24 @@ export const onDeleteList = /* GraphQL */ `
       id
       title
       description
-      Items {
+      listItems {
         items {
           id
           title
           quantity
           done
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -78,9 +99,13 @@ export const onCreateListItem = /* GraphQL */ `
         id
         title
         description
-        Items {
+        listItems {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -88,11 +113,18 @@ export const onCreateListItem = /* GraphQL */ `
         items {
           id
           action
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -109,9 +141,13 @@ export const onUpdateListItem = /* GraphQL */ `
         id
         title
         description
-        Items {
+        listItems {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -119,11 +155,18 @@ export const onUpdateListItem = /* GraphQL */ `
         items {
           id
           action
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -140,9 +183,13 @@ export const onDeleteListItem = /* GraphQL */ `
         id
         title
         description
-        Items {
+        listItems {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -150,11 +197,18 @@ export const onDeleteListItem = /* GraphQL */ `
         items {
           id
           action
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -174,15 +228,25 @@ export const onCreateAction = /* GraphQL */ `
           id
           title
           description
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         actions {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -202,15 +266,25 @@ export const onUpdateAction = /* GraphQL */ `
           id
           title
           description
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         actions {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -230,15 +304,25 @@ export const onDeleteAction = /* GraphQL */ `
           id
           title
           description
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         actions {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
