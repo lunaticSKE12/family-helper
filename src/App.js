@@ -8,12 +8,12 @@ import React, { useEffect, useState } from 'react';
 Amplify.configure(awsConfig);
 
 function App() {
-  const [list, setlist] = useState([]);
+  const [list, setList] = useState([]);
 
   async function fetchList() {
-    const result = await API.graphql(graphqlOperation(listLists));
-
-    console.log(result);
+    const { data } = await API.graphql(graphqlOperation(listLists));
+    setList(data.listLists.items);
+    console.log(data);
   }
 
   useEffect(() => {
