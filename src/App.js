@@ -7,6 +7,7 @@ import 'Semantic-UI-CSS/semantic.min.css';
 import React, { useEffect, useState } from 'react';
 import MainHeader from './components/headers/MainHeader';
 import Lists from './components/List/Lists';
+import { Container } from 'semantic-ui-react';
 
 Amplify.configure(awsConfig);
 
@@ -16,7 +17,6 @@ function App() {
   async function fetchList() {
     const { data } = await API.graphql(graphqlOperation(listLists));
     setLists(data.listLists.items);
-    console.log(data);
   }
 
   useEffect(() => {
@@ -25,10 +25,12 @@ function App() {
   return (
     <AmplifyAuthenticator>
       <AmplifySignOut />
-      <div className="App">
-        <MainHeader />
-        <Lists lists={lists} />
-      </div>
+      <Container>
+        <div className="App">
+          <MainHeader />
+          <Lists lists={lists} />
+        </div>
+      </Container>
     </AmplifyAuthenticator>
   );
 }
