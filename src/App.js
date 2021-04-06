@@ -3,6 +3,7 @@ import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import awsConfig from './aws-exports';
 import { AmplifyAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { listLists } from './graphql/queries';
+import { createList } from './graphql/mutations';
 import 'semantic-ui-css/semantic.min.css';
 import React, { useEffect, useState, useReducer } from 'react';
 import MainHeader from './components/headers/MainHeader';
@@ -16,7 +17,7 @@ const initialState = {
   description: '',
 };
 
-function listReducer(state = initialState, action) {
+const listReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'DESCRIPTION_CHANGED':
       return { ...state, description: action.value };
@@ -26,25 +27,34 @@ function listReducer(state = initialState, action) {
       console.log('Default action for: ', action);
       return state;
   }
-}
+};
 
 function App() {
   const [state, dispatch] = useReducer(listReducer, initialState);
 
   const [lists, setLists] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  async function fetchList() {
+  const fetchList = async () => {
     const { data } = await API.graphql(graphqlOperation(listLists));
     setLists(data.listLists.items);
-  }
+  };
 
   useEffect(() => {
     fetchList();
   }, []);
-  function toggleModal(shouldOpen) {
+
+  const toggleModal = (shouldOpen) => {
     setIsModalOpen(shouldOpen);
-  }
+  };
+  const saveList = async () => {
+    const { title, description } = state;
+    const result = await API.graphql(
+      graphqlOperation(createList, { input: { title, description } })
+    );
+    toggleModal(false);
+    console.log('Save data with result: ', result);
+  };
   return (
     <AmplifyAuthenticator>
       <Container style={{ height: '100vh' }}>
@@ -86,7 +96,7 @@ function App() {
           <Button negative onClick={() => toggleModal(false)}>
             Cancel
           </Button>
-          <Button positive onClick={() => toggleModal(false)}>
+          <Button positive onClick={saveList}>
             Save
           </Button>
         </Modal.Actions>
