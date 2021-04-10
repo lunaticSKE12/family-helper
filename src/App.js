@@ -16,6 +16,7 @@ Amplify.configure(awsConfig);
 const initialState = {
   title: '',
   description: '',
+  isModalOpen: false,
 };
 
 const listReducer = (state = initialState, action) => {
@@ -24,6 +25,10 @@ const listReducer = (state = initialState, action) => {
       return { ...state, description: action.value };
     case 'TITLE_CHANGED':
       return { ...state, title: action.value };
+    case 'OPEN_MODAL':
+      return { ...state, isModalOpen: true };
+    case 'CLOSE_MODAL':
+      return { ...state, isModalOpen: false, title: '', description: '' };
     default:
       console.log('Default action for: ', action);
       return state;
@@ -35,7 +40,6 @@ function App() {
 
   const [lists, setLists] = useState([]);
   const [newList, setNewList] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fetchList = async () => {
     const { data } = await API.graphql(graphqlOperation(listLists));
@@ -61,22 +65,22 @@ function App() {
     });
   }, []);
 
-  const toggleModal = (shouldOpen) => {
-    setIsModalOpen(shouldOpen);
-  };
   const saveList = async () => {
     const { title, description } = state;
     const result = await API.graphql(
       graphqlOperation(createList, { input: { title, description } })
     );
-    toggleModal(false);
+    dispatch({ type: 'CLOSE_MODAL' });
     console.log('Save data with result: ', result);
   };
   return (
     <AmplifyAuthenticator>
       <Container style={{ height: '100vh' }}>
         <AmplifySignOut />
-        <Button className="floatingButton" onClick={() => toggleModal(true)}>
+        <Button
+          className="floatingButton"
+          onClick={() => dispatch({ type: 'OPEN_MODAL' })}
+        >
           <Icon name="plus" className="floatingButton_icon" />
         </Button>
         <div className="App">
@@ -84,7 +88,7 @@ function App() {
           <Lists lists={lists} />
         </div>
       </Container>
-      <Modal open={isModalOpen} dimmer="blurring">
+      <Modal open={state.isModalOpen} dimmer="blurring">
         <Modal.Header>Create your list</Modal.Header>
         <Modal.Content>
           <Form>
@@ -110,7 +114,7 @@ function App() {
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button negative onClick={() => toggleModal(false)}>
+          <Button negative onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>
             Cancel
           </Button>
           <Button positive onClick={saveList}>
