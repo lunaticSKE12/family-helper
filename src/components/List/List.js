@@ -1,28 +1,7 @@
 import React from 'react';
-import { Item } from 'semantic-ui-react';
+import { Icon, Item } from 'semantic-ui-react';
 
-function List({ title, description, createdAt }) {
-  // let date = createdAt.split('T')[0];
-  // let date2 = new Date(date);
-  // var d_names = [
-  //   'Sunday',
-  //   'Monday',
-  //   'Tuesday',
-  //   'Wednesday',
-  //   'Thursday',
-  //   'Friday',
-  //   'Saturday',
-  // ];
-
-  // console.log(
-  //   d_names[date2.getDay()] +
-  //     '-' +
-  //     date2.getFullYear() +
-  //     '-' +
-  //     (date2.getMonth() + 1) +
-  //     '-' +
-  //     date2.getDate()
-  // );
+function List({ id, title, description, createdAt, dispatch }) {
   return (
     <Item>
       <Item.Image
@@ -32,7 +11,14 @@ function List({ title, description, createdAt }) {
       <Item.Content>
         <Item.Header>{title}</Item.Header>
         <Item.Description>{description}</Item.Description>
-        <Item.Extra>{createdAt}</Item.Extra>
+        <Item.Extra>
+          {createdAt}
+          <Icon
+            name="trash"
+            className="ml-3"
+            onClick={() => dispatch({ type: 'DELETE_LIST', value: id })}
+          />
+        </Item.Extra>
       </Item.Content>
     </Item>
   );

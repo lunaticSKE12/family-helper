@@ -32,6 +32,9 @@ const listReducer = (state = initialState, action) => {
       return { ...state, isModalOpen: true };
     case 'CLOSE_MODAL':
       return { ...state, isModalOpen: false, title: '', description: '' };
+    case 'DELETE_LIST':
+      console.log(action.value);
+      return { ...state };
     default:
       console.log('Default action for: ', action);
       return state;
@@ -80,7 +83,7 @@ function App() {
         </Button>
         <div className="App">
           <MainHeader />
-          <Lists lists={state.lists} />
+          <Lists lists={state.lists} dispatch={dispatch} />
         </div>
       </Container>
       <Modal open={state.isModalOpen} dimmer="blurring">
