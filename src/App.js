@@ -3,7 +3,7 @@ import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import awsConfig from './aws-exports';
 import { AmplifyAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { listLists } from './graphql/queries';
-import { createList } from './graphql/mutations';
+import { createList, deleteList } from './graphql/mutations';
 import { onCreateList } from './graphql/subscriptions';
 import 'semantic-ui-css/semantic.min.css';
 import React, { useEffect, useReducer } from 'react';
@@ -34,11 +34,19 @@ const listReducer = (state = initialState, action) => {
       return { ...state, isModalOpen: false, title: '', description: '' };
     case 'DELETE_LIST':
       console.log(action.value);
+      deleteListBtId(action.value);
       return { ...state };
     default:
       console.log('Default action for: ', action);
       return state;
   }
+};
+
+const deleteListBtId = async (id) => {
+  const result = await API.graphql(
+    graphqlOperation(deleteList, { input: { id } })
+  );
+  console.log('deleted', result);
 };
 
 function App() {
